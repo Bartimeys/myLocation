@@ -8,7 +8,8 @@ function initMap() {
         center: location,
         zoom: 16
     });
-    infoWindow = new google.maps.InfoWindow;
+    var infoWindow = new google.maps.InfoWindow;
+    var geocoder = new google.maps.Geocoder;
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -21,6 +22,26 @@ function initMap() {
                 zoom: 16,
                 position: pos,
                 map: map
+            });
+            var geocoder = new google.maps.Geocoder;
+            var infowindow = new google.maps.InfoWindow;
+            var latlng = {lat: parseFloat(pos.lat), lng: parseFloat(pos.lng)};
+            geocoder.geocode({'location': latlng}, function(results, status) {
+                if (status === 'OK') {
+                    if (results[0]) {
+                        map.setZoom(16);
+                        var marker = new google.maps.Marker({
+                            position: latlng,
+                            map: map
+                        });
+                        infowindow.setContent(results[0].formatted_address);
+                        infowindow.open(map, marker);
+                    } else {
+                        window.alert('No results found');
+                    }
+                } else {
+                    window.alert('Geocoder failed due to: ' + status);
+                }
             });
             map.setCenter(pos);
             new AutocompleteDirectionsHandler(map);
