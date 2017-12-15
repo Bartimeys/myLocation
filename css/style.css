@@ -1,3 +1,86 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #E7E7E7;
+    padding: 30px 60px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.alert {
+    min-width: 150px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+.alert-success {
+    background-color: #f2f2f2;
+    color: #838383;
+}
+.alert-warning {
+    background-color: #ebc063;
+    border-color: #e8b64c;
+    color: #a07415;
+}
+.alert-danger {
+    background-color: #e27c79;
+    border-color: #dd6864;
+    color: #9f2723;
+}
+.blue{
+    color: #3086e3;
+}
+#f-s-10{
+    font-size: 10px;
+}
+.alert p {
+    padding: 5px 10px;
+    margin: 0;
+    font-size: 14px;
+}
+.alert i {
+    padding-right: 5px;
+    vertical-align: middle;
+    font-size: 24px;
+}
+p.blue {
+    border-bottom: 1px solid #d3d3d3;
+}
+.red{
+    color: #ed412d;
+}
+.alert .close-alert {
+    padding: 10px;
+    -webkit-appearance: none;
+    position: relative;
+    float: right;
+    border: 0;
+    cursor: pointer;
+    color: inherit;
+    background: 0 0;
+    font-size: 21px;
+    line-height: 1;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+    filter: alpha(opacity=40);
+    opacity: .4;
+}
+.alert .close-alert:hover {
+    filter: alpha(opacity=70);
+    opacity: .7;
+}
+
+.shadow-1, .alert {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.shadow-2, .alert:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
 #map {
     height: 100%;
 }
@@ -47,3 +130,16 @@ html, body {
     font-size: 13px;
     font-weight: 300;
 }
+#details{
+    position: absolute;
+    left: 1px;
+    top: 50px;
+    border-radius: 2px;
+    background-color: rgb(255, 255, 255);
+    width: 333px;
+    height: 10em;
+    z-index: 5;
+    padding: 0;
+}
+
+/*Marker style*/

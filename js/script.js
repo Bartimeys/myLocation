@@ -1,5 +1,5 @@
 'use strict';
-var map,infoWindow;
+var map, infoWindow;
 
 function initMap() {
     var location = {lat: -33.866, lng: 151.196};
@@ -12,7 +12,7 @@ function initMap() {
     var geocoder = new google.maps.Geocoder;
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
@@ -26,7 +26,7 @@ function initMap() {
             var geocoder = new google.maps.Geocoder;
             var infowindow = new google.maps.InfoWindow;
             var latlng = {lat: parseFloat(pos.lat), lng: parseFloat(pos.lng)};
-            geocoder.geocode({'location': latlng}, function(results, status) {
+            geocoder.geocode({'location': latlng}, function (results, status) {
                 if (status === 'OK') {
                     if (results[0]) {
                         map.setZoom(16);
@@ -35,6 +35,13 @@ function initMap() {
                             map: map
                         });
                         infowindow.setContent(results[0].formatted_address);
+                        console.log(results[0].formatted_address);
+                        var details = document.getElementById('details');
+                        // var close = document.getElementsByClassName(".close-alert");
+                        // close.remove();
+                        details.innerHTML += '<p id="f-s-10">Ты здесь:</p>' + '<p class="blue">' +
+                            '<i class="fa fa-map-marker red" aria-hidden="true"></i>' + results[0].formatted_address + '</p>'
+                            + '<p>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</p>';
                         infowindow.open(map, marker);
                     } else {
                         window.alert('No results found');
@@ -46,7 +53,7 @@ function initMap() {
             map.setCenter(pos);
             new AutocompleteDirectionsHandler(map);
 
-        }, function() {
+        }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
         });
     } else {
@@ -54,6 +61,7 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 }
+
 function AutocompleteDirectionsHandler(map) {
     this.map = map;
     this.originPlaceId = null;
@@ -85,19 +93,19 @@ function AutocompleteDirectionsHandler(map) {
 
 // Sets a listener on a radio button to change the filter type on Places
 // Autocomplete.
-AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
+AutocompleteDirectionsHandler.prototype.setupClickListener = function (id, mode) {
     var radioButton = document.getElementById(id);
     var me = this;
-    radioButton.addEventListener('click', function() {
+    radioButton.addEventListener('click', function () {
         me.travelMode = mode;
         me.route();
     });
 };
 
-AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
+AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
     var me = this;
     autocomplete.bindTo('bounds', this.map);
-    autocomplete.addListener('place_changed', function() {
+    autocomplete.addListener('place_changed', function () {
         var place = autocomplete.getPlace();
         if (!place.place_id) {
             window.alert("Please select an option from the dropdown list.");
@@ -113,7 +121,7 @@ AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(aut
 
 };
 
-AutocompleteDirectionsHandler.prototype.route = function() {
+AutocompleteDirectionsHandler.prototype.route = function () {
     if (!this.originPlaceId || !this.destinationPlaceId) {
         return;
     }
@@ -123,7 +131,7 @@ AutocompleteDirectionsHandler.prototype.route = function() {
         origin: {'placeId': this.originPlaceId},
         destination: {'placeId': this.destinationPlaceId},
         travelMode: this.travelMode
-    }, function(response, status) {
+    }, function (response, status) {
         if (status === 'OK') {
             me.directionsDisplay.setDirections(response);
         } else {
