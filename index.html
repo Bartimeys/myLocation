@@ -4,56 +4,44 @@
     <title>Geolocation</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-         * element that contains the map. */
-        #map {
-            height: 100%;
-        }
-
-        /* Optional: Makes the sample page fill the window. */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
     <link href="css/style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 </head>
 <body>
 
-<div id="details" class="alert alert-success" role="alert">
+<div id="details" class="alert container alert-success" role="alert">
 </div>
 
 <div id="map"></div>
 
-<button class="direction" onclick="openNav()" style="cursor:pointer">
-    <i class="icon icon-direction"></i>
-    Прокласти маршрут
-</button>
+<!--<button class="direction" onclick="openNav()">-->
+    <!--<i class="icon icon-direction"></i>-->
+    <!--Прокласти маршрут-->
+<!--</button>-->
+
 <div id="mySidenav" class="sidenav">
+    <ul class="nav sidebar-nav">
+        <li id="mode-selector" class="controls dropdown">
+                <span><input type="radio" name="type" id="changemode-walking" checked="checked">
+                    <label for="changemode-walking">Walking</label></span>
+            <br>
+                <span><input type="radio" name="type" id="changemode-transit">
+                    <label for="changemode-transit">Transit</label></span>
+            <br>
+                <span><input type="radio" name="type" id="changemode-driving">
+                    <label for="changemode-driving">Driving</label></span>
+
+        </li>
+        <li><input id="origin-input" class="controls" type="text"
+                   placeholder="Enter an origin location">
+        </li>
+        <li><input id="destination-input" class="controls" type="text"
+                   placeholder="Enter a destination location"></li>
+    </ul>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <div id="mode-selector" class="controls">
-        <input type="radio" name="type" id="changemode-walking" checked="checked">
-        <label for="changemode-walking">Walking</label>
-
-        <input type="radio" name="type" id="changemode-transit">
-        <label for="changemode-transit">Transit</label>
-
-        <input type="radio" name="type" id="changemode-driving">
-        <label for="changemode-driving">Driving</label>
-    </div>
-    <input id="origin-input" class="controls" type="text"
-           placeholder="Enter an origin location">
-
-    <input id="destination-input" class="controls" type="text"
-           placeholder="Enter a destination location">
 
 </div>
-
-<h2>Animated Sidenav Example</h2>
-<p>Click on the element below to open the side navigation menu.</p>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBB4FzKmgQHsyzwbiWyvcxheSuGbaJHqc&language=ru&region=UA&libraries=places&callback=initMap">
 </script>

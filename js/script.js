@@ -28,26 +28,38 @@ function initMap() {
             var infowindow = new google.maps.InfoWindow;
             var latlng = {lat: parseFloat(pos.lat), lng: parseFloat(pos.lng)};
             geocoder.geocode({'location': latlng}, function (results, status) {
-                if (status === 'OK') {
+                if (status.toUpperCase() === 'OK') {
                     if (results[0]) {
                         map.setZoom(16);
                         var marker = new google.maps.Marker({
                             position: latlng,
                             map: map
                         });
-                        infowindow.setContent(results[0].formatted_address);
-                        var adress = results[0].address_components[1].short_name + ', '+
-                            results[0].address_components[0].short_name + ', '+
+                        // infowindow.setContent(results[0].formatted_address);
+                        var adress = results[0].address_components[1].short_name + ', ' +
+                            results[0].address_components[0].short_name + ', ' +
                             results[0].address_components[3].long_name;
-                        console.log(adress);
                         var details = document.getElementById('details');
-                        details.innerHTML += '<p id="f-s-10">Ти тут:</p>' + '<p class="blue">' +
-                            '<i class="icon icon-marker" aria-hidden="true"></i>' + adress + '</p>'
-                            + '<p><b>Когнітивна психологія</b> — це вчення у психології, що досліджує' +
-                            ' внутрішні розумові процеси, як-от процес вирішення проблеми, ' +
-                            'пам\'ять та мовні процеси. ' +
-                            'Когнітивна психологія бере початок з пізньої моделі біхевіоризму.</p>';
-                        infowindow.open(map, marker);
+                        details.innerHTML += '    <div class="col s12 m4 l4">\n' +
+                            '        <p class="header" id="f-s-10">Ти тут:</p>\n' +
+                            '<p class="blue-text"><i class="icon icon-marker" aria-hidden="true"></i>' + adress +
+                            '</p>' +
+                            '        <div class="card horizontal"  id="m-0">\n' +
+                            '            <div class="card-stacked">\n' +
+                            '                <div class="card-content">\n' +
+                            '                    <b>Когнітивна психологія</b> — це вчення у психології,' +
+                            ' що досліджує внутрішні розумові процеси, як-от процес вирішення проблеми, ' +
+                            'пам\'ять та мовні процеси. Когнітивна психологія бере початок з пізньої моделі' +
+                            ' біхевіоризму.' +
+                            '                </div>\n' +
+                            '            </div>\n' +
+                            '        </div>\n' +
+                            '<button class="direction mobile" onclick="openNav()">\n' +
+                            '        <i class="icon icon-direction mobile"></i>\n' +
+                            '        Прокласти маршрут\n' +
+                            '    </button>'+
+                            '    </div>';
+                        // infowindow.open(map, marker);
                     } else {
                         window.alert('No results found');
                     }
@@ -90,25 +102,21 @@ function AutocompleteDirectionsHandler(map) {
     //
     this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
     this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
-
-    this.map.controls[google.maps].push(originInput);
-    this.map.controls[google.maps].push(destinationInput);
-    this.map.controls[google.maps].push(modeSelector);
 }
 
 // Sets a listener on a radio button to change the filter type on Places
 // Autocomplete.
 AutocompleteDirectionsHandler.prototype.setupClickListener = function (id, mode) {
     var radioButton = document.getElementById(id);
-    var me = this;
+    var that = this;
     radioButton.addEventListener('click', function () {
-        me.travelMode = mode;
-        me.route();
+        that.travelMode = mode;
+        that.route();
     });
 };
 
 AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
-    var me = this;
+    var that = this;
     autocomplete.bindTo('bounds', this.map);
     autocomplete.addListener('place_changed', function () {
         var place = autocomplete.getPlace();
@@ -117,11 +125,11 @@ AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (au
             return;
         }
         if (mode === 'ORIG') {
-            me.originPlaceId = place.place_id;
+            that.originPlaceId = place.place_id;
         } else {
-            me.destinationPlaceId = place.place_id;
+            that.destinationPlaceId = place.place_id;
         }
-        me.route();
+        that.route();
     });
 
 };
@@ -130,15 +138,15 @@ AutocompleteDirectionsHandler.prototype.route = function () {
     if (!this.originPlaceId || !this.destinationPlaceId) {
         return;
     }
-    var me = this;
+    var that = this;
 
     this.directionsService.route({
         origin: {'placeId': this.originPlaceId},
         destination: {'placeId': this.destinationPlaceId},
         travelMode: this.travelMode
     }, function (response, status) {
-        if (status === 'OK') {
-            me.directionsDisplay.setDirections(response);
+        if (status.toUpperCase() === 'OK') {
+            that.directionsDisplay.setDirections(response);
         } else {
             window.alert('Directions request failed due to ' + status);
         }
