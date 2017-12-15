@@ -21,7 +21,8 @@ function initMap() {
                 center: pos,
                 zoom: 16,
                 position: pos,
-                map: map
+                map: map,
+                animation: google.maps.Animation.DROP
             });
             var geocoder = new google.maps.Geocoder;
             var infowindow = new google.maps.InfoWindow;
@@ -41,7 +42,7 @@ function initMap() {
                         console.log(adress);
                         var details = document.getElementById('details');
                         details.innerHTML += '<p id="f-s-10">Ти тут:</p>' + '<p class="blue">' +
-                            '<i class="fa fa-map-marker red" aria-hidden="true"></i>' + adress + '</p>'
+                            '<i class="icon icon-marker" aria-hidden="true"></i>' + adress + '</p>'
                             + '<p><b>Когнітивна психологія</b> — це вчення у психології, що досліджує' +
                             ' внутрішні розумові процеси, як-от процес вирішення проблеми, ' +
                             'пам\'ять та мовні процеси. ' +
@@ -86,13 +87,13 @@ function AutocompleteDirectionsHandler(map) {
     this.setupClickListener('changemode-walking', 'WALKING');
     this.setupClickListener('changemode-transit', 'TRANSIT');
     this.setupClickListener('changemode-driving', 'DRIVING');
-
+    //
     this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
     this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
 
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+    this.map.controls[google.maps].push(originInput);
+    this.map.controls[google.maps].push(destinationInput);
+    this.map.controls[google.maps].push(modeSelector);
 }
 
 // Sets a listener on a radio button to change the filter type on Places
@@ -150,4 +151,12 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
+}
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
 }
