@@ -35,13 +35,17 @@ function initMap() {
                             map: map
                         });
                         infowindow.setContent(results[0].formatted_address);
-                        console.log(results[0].formatted_address);
+                        var adress = results[0].address_components[1].short_name + ', '+
+                            results[0].address_components[0].short_name + ', '+
+                            results[0].address_components[3].long_name;
+                        console.log(adress);
                         var details = document.getElementById('details');
-                        // var close = document.getElementsByClassName(".close-alert");
-                        // close.remove();
-                        details.innerHTML += '<p id="f-s-10">Ты здесь:</p>' + '<p class="blue">' +
-                            '<i class="fa fa-map-marker red" aria-hidden="true"></i>' + results[0].formatted_address + '</p>'
-                            + '<p>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</p>';
+                        details.innerHTML += '<p id="f-s-10">Ти тут:</p>' + '<p class="blue">' +
+                            '<i class="fa fa-map-marker red" aria-hidden="true"></i>' + adress + '</p>'
+                            + '<p><b>Когнітивна психологія</b> — це вчення у психології, що досліджує' +
+                            ' внутрішні розумові процеси, як-от процес вирішення проблеми, ' +
+                            'пам\'ять та мовні процеси. ' +
+                            'Когнітивна психологія бере початок з пізньої моделі біхевіоризму.</p>';
                         infowindow.open(map, marker);
                     } else {
                         window.alert('No results found');

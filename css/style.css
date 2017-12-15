@@ -132,12 +132,12 @@ html, body {
 }
 #details{
     position: absolute;
-    left: 1px;
+    left: 12px;
     top: 50px;
     border-radius: 2px;
     background-color: rgb(255, 255, 255);
     width: 333px;
-    height: 10em;
+    height: 11em;
     z-index: 5;
     padding: 0;
 }
