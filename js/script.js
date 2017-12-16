@@ -39,6 +39,7 @@ function initMap() {
                         var adress = results[0].address_components[1].short_name + ', ' +
                             results[0].address_components[0].short_name + ', ' +
                             results[0].address_components[3].long_name;
+                        console.log(results);
                         var details = document.getElementById('details');
                         details.innerHTML += '    <div class="col s12 m4 l4">\n' +
                             '        <p class="header" id="f-s-10">Ти тут:</p>\n' +
