@@ -2,6 +2,6 @@
 2. run index.html
 
 
-![ScreenShot](https://github.com/Bartimeys/myLocation/blob/master/img/Screenshot_1.png)
+![ScreenShot](https://github.com/Bartimeys/myLocation/blob/master/img/img.png)
 
 
