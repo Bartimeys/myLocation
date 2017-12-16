@@ -3,7 +3,5 @@
 
 
 ![ScreenShot](https://github.com/Bartimeys/myLocation/blob/master/img/Screenshot_1.png)
-![ScreenShot](https://github.com/Bartimeys/myLocation/blob/master/img/Screenshot_2.png)
-![ScreenShot](https://github.com/Bartimeys/myLocation/blob/master/img/Screenshot_3.png)
 
 
