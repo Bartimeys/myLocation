@@ -35,14 +35,14 @@ function initMap() {
                             position: latlng,
                             map: map
                         });
-                        // infowindow.setContent(results[0].formatted_address);
                         var adress = results[0].address_components[1].short_name + ', ' +
                             results[0].address_components[0].short_name + ', ' +
                             results[0].address_components[3].long_name;
-                        console.log(results);
+                        // infowindow.setContent(adress);
                         var details = document.getElementById('details');
                         details.innerHTML += '    <div class="col s12 m4 l4">\n' +
-                            '        <p class="header" id="f-s-10">Ти тут:</p>\n' +
+                            '        <p class="header" id="f-s-10">Ти тут:</p>' +
+                            '<a href="javascript:void(0)" class="close" onclick="closeAlert()">&times;</a>' +
                             '<p class="blue-text"><i class="icon icon-marker" aria-hidden="true"></i>' + adress +
                             '</p>' +
                             '        <div class="card horizontal"  id="m-0">\n' +
@@ -58,7 +58,7 @@ function initMap() {
                             '<button class="direction mobile" onclick="openNav()">\n' +
                             '        <i class="icon icon-direction mobile"></i>\n' +
                             '        Прокласти маршрут\n' +
-                            '    </button>'+
+                            '    </button>' +
                             '    </div>';
                         // infowindow.open(map, marker);
                     } else {
@@ -168,4 +168,8 @@ function openNav() {
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
+}
+
+function closeAlert() {
+    document.getElementById("details").style.display = "none";
 }
