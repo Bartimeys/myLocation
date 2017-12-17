@@ -1,8 +1,6 @@
 1. git clone this repo
 2. npm install
-3. run index.html
+3. run 'gulp'
 
-
-![ScreenShot](https://github.com/Bartimeys/myLocation/blob/master/img/img.png)
 
 

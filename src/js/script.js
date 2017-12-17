@@ -41,6 +41,7 @@ function initMap() {
                         // infowindow.setContent(adress);
                         var details = document.getElementById('details');
                         details.innerHTML += '    <div class="col s12 m4 l4">\n' +
+                            '<div  id="close">' +
                             '        <p class="header" id="f-s-10">Ти тут:</p>' +
                             '<a href="javascript:void(0)" class="close" onclick="closeAlert()">&times;</a>' +
                             '<p class="blue-text"><i class="icon icon-marker" aria-hidden="true"></i>' + adress +
@@ -54,7 +55,7 @@ function initMap() {
                             ' біхевіоризму.' +
                             '                </div>\n' +
                             '            </div>\n' +
-                            '        </div>\n' +
+                            '        </div></div>\n' +
                             '<button class="direction mobile" onclick="openNav()">\n' +
                             '        <i class="icon icon-direction mobile"></i>\n' +
                             '        Прокласти маршрут\n' +
@@ -171,5 +172,7 @@ function closeNav() {
 }
 
 function closeAlert() {
-    document.getElementById("details").style.display = "none";
+    document.getElementById("close").style.display = "none";
+    document.getElementById("details").style.background = "transparent";
+    document.getElementById("details").style.boxShadow = "0 3px 6px rgba(0,0,0,0), 0 3px 6px rgba(0,0,0,0)";
 }
